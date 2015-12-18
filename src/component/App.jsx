@@ -11,7 +11,7 @@ const App = React.createClass({
       </div>
       <div>
         <FormattedMessage id="app.date-picker.title"/>: &nbsp;
-        <Datepicker locale={window.appRes.datePickerLocale}/>
+        <Datepicker locale={window.appLocale.data.datePickerLocale}/>
       </div>
     </div>);
   },

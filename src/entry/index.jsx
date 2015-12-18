@@ -4,11 +4,12 @@ import ReactDOM from 'react-dom';
 import React from 'react';
 import {addLocaleData, IntlProvider} from 'react-intl';
 
-const localePrefix = window.appLocale.slice(0, window.appLocale.indexOf('-'));
-addLocaleData(window.ReactIntlLocaleData[localePrefix]);
+const appLocale = window.appLocale;
+
+addLocaleData(appLocale.data);
 
 ReactDOM.render(
-  <IntlProvider locale={window.appLocale} messages={window.appRes}>
+  <IntlProvider locale={appLocale.locale} messages={appLocale.messages}>
     <App />
   </IntlProvider>,
   document.getElementById('react-content')
