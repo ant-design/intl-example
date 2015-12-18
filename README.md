@@ -18,8 +18,5 @@ npm install
 npm run dev
 ```
 
-
-## Norw
-
 - Chinese: http://127.0.0.1:8000 
 - English: http://127.0.0.1:8000/index-en.html
