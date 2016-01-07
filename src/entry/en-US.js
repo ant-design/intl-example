@@ -1,4 +1,4 @@
-import datePickerLocale from 'antd/lib/datepicker/locale/en_US';
+import datePickerLocale from 'antd/lib/date-picker/locale/en_US';
 import appLocaleData from 'react-intl/lib/locale-data/en';
 
 window.appLocale = {

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Datepicker } from 'antd';
+import { DatePicker } from 'antd';
 import {FormattedMessage} from 'react-intl';
 
 const App = React.createClass({
@@ -11,7 +11,7 @@ const App = React.createClass({
       </div>
       <div>
         <FormattedMessage id="app.date-picker.title"/>: &nbsp;
-        <Datepicker locale={window.appLocale.data.datePickerLocale}/>
+        <DatePicker locale={window.appLocale.messages.datePickerLocale}/>
       </div>
     </div>);
   },
