@@ -32,6 +32,6 @@
     "start": "npm run dev",
     "dev": "dora -p 8001 --plugins atool-build,proxy",
     "lint": "eslint --ext .js,.jsx src",
-    "build": "rm -rf dist && atool-build && mkdir -p dist/${npm_package_name}/${npm_package_version} && mv dist/*.* dist/${npm_package_name}/${npm_package_version}/"
+    "build": "atool-build -o ./dist/${npm_package_name}/${npm_package_version}/"
   }
 }
