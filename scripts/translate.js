@@ -48,8 +48,7 @@ newLangs.en = defaultMessagesArr.reduce((collection, [id]) => {
 mkdirpSync(LANG_DIR);
 
 fs.writeFileSync(LANG_DIR + 'en.js',
-`// 该文件由脚本自动生成，请勿修改\n
-module.exports = ` +
+`module.exports = ` +
 JSON.stringify(newLangs.en, null, 2)
 );
 
