@@ -1,11 +1,11 @@
 import datePickerLocale from 'antd/lib/date-picker/locale/zh_CN';
 import appLocaleData from 'react-intl/lib/locale-data/zh';
+import zhMessages from '../../locale/zh.js';
 
 window.appLocale = {
-  locale: 'zh-Hans-CN',
-  messages: {
-    'app.date-picker.title': '日期选择',
+  messages: Object.assign({}, zhMessages, {
     datePickerLocale,
-  },
+  }),
+  locale: 'zh-Hans-CN',
   data: appLocaleData,
 };

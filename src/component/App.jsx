@@ -10,7 +10,7 @@ const App = React.createClass({
         <p><a href="index-en.html">english</a></p>
       </div>
       <div>
-        <FormattedMessage id="app.date-picker.title"/>: &nbsp;
+        <FormattedMessage id="app.date-picker.title" defaultMessage="日期选择"/>: &nbsp;
         <DatePicker locale={window.appLocale.messages.datePickerLocale}/>
       </div>
     </div>);

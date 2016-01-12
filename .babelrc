@@ -1,0 +1,13 @@
+{
+  "env": {
+    "i18n": {
+      "presets": [ "es2015", "stage-0", "react" ],
+      "plugins": [
+        [ "react-intl", {
+          "messagesDir": "./i18n-messages",
+          "enforceDescriptions": false
+        }]
+      ],
+    }
+  }
+}
