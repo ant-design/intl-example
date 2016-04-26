@@ -1,11 +1,12 @@
-import datePickerLocale from 'antd/lib/date-picker/locale/en_US';
-import appLocaleData from 'react-intl/lib/locale-data/en';
+import antdEn from 'antd/lib/locale-provider/en_US';
+import appLocaleData from 'react-intl/locale-data/en';
 import enMessages from '../../locale/en.js';
 
 window.appLocale = {
-  messages: Object.assign({}, enMessages, {
-    datePickerLocale,
-  }),
+  messages: {
+    ...enMessages,
+  },
+  antd: antdEn,
   locale: 'en-US',
   data: appLocaleData,
 };

@@ -18,8 +18,8 @@ npm install
 npm run dev
 ```
 
-- Chinese: http://127.0.0.1:8000
-- English: http://127.0.0.1:8000/index-en.html
+- Chinese: http://127.0.0.1:8989
+- English: http://127.0.0.1:8989/index-en.html
 
 ## I18n Support
 
