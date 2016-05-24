@@ -7,7 +7,7 @@
 * AntD 国际化规范附录
 * 扩展阅读
 
-# AntD 国际化方案概述
+## AntD 国际化方案概述
 
 国际化是一个看似简单，实则非常复杂的领域，实际进行国际化工作时，大家会发现它往往会涉及很多内容：
 * 前端国际化
@@ -15,9 +15,10 @@
 * 国际化资源文件管理
 * 项目之间、开发者与翻译者之间如何协作
 
-而且，国际化方案往往与具体的技术栈是绑定的，在这里需要申明的是本方案仅针对 React 技术栈，且不会涉及服务端国际化内容。
+而且，国际化方案往往与具体的技术栈是绑定的。
+AntD 提供的国际化方案仅针对 React 技术栈，且不会涉及服务端国际化内容。
 
-# 前端国际化详解、举例
+## 前端国际化详解、举例
 
 国际化的核心步骤有两步：
 
@@ -26,13 +27,14 @@
 
 在这里我们重点看下如何将页面上的 "key" 替换为相关 "value"。  
 首先，我需要跟大家介绍一个类库 [React Intl](https://github.com/yahoo/react-intl)，我们的国际化方案主要是基于它展开的。
+React Intl 是由 yahoo 开发的，针对 React 的国际化类库，基于 Format.js，支持语言、时间、货币等等国际化。
 
-### React Intl 国际化
+### React Intl 国际化步骤
 
-1. polyfill
-2. add react-intl locale data
-3. add react-intl provider component
-4. use react-intl's components & apis
+1. 判断是否需要引入 polyfill 文件
+2. 引入 react-intl 的 local data
+3. 创建 react-intl 国际化上下文组件
+4. 使用 react-intl's components & apis，进行国际化开发
 
 #### polyfill
 
@@ -43,6 +45,8 @@
 ```html
 <!-- index.en.html -->
 <script>
+  // 我们这里采用的做法是直接判断 window.Intl 是否存在，从而确定是否要引入 polyfill 文件
+  // 下面的 cdn 地址大家可以修改成本地资源文件，或者参考官方文档其他引入方式
   if (!window.Intl) {
     document.writeln('<script src="https://as.alipayobjects.com/g/component/intl/1.0.1/Intl.js">' + '<' + '/script>');
     document.writeln('<script src="https://as.alipayobjects.com/g/component/intl/1.0.1/locale-data/jsonp/en.js">' + '<' + '/script>');
@@ -50,7 +54,7 @@
 </script>
 ```
 
-#### add react-intl locale data
+#### 引入 react-intl 的 local data
 
 ```javascript
 import { addLocaleData } from 'react-intl';
@@ -61,7 +65,7 @@ addLocaleData(en);
 react-intl 在做国际化的时候需要一些特有的 local data，主要是进行相对时间翻译时，比如昨天、今天、明天、几分钟前、几个月前之类的。  
 我们通过 `addLocaleData` 这个方法加载相关内容，大家可以根据实际情况加载需要的 locale-data。
 
-#### add react-intl provider component
+#### 创建 react-intl 国际化上下文组件
 
 为了能够使用 react-intl 进行国际化，跟 redux 这些框架一样，我们需要一个 Provider Component，用它来提供国际化的上下文，具体用法：
 
@@ -118,10 +122,14 @@ export default NotFound;
 
 `<FormattedMessage />` 是我们最常用的一个组件，属性包括 `id` `defaultMessage` 等。
 
-# 国际化资源文件管理
+React Intl 国际化基本步骤就是这样，详情请查看官方文档。
 
-## 国际化资源文件内容
-目前我们管理资源文件的方式是在 src/locales 文件夹下：
+## 国际化资源文件管理
+
+上面的文档主要讲了在引入资源文件之后，如何进行国际化的步骤，接下来我们来聊下国际化资源文件的管理。
+
+### 国际化资源文件内容
+目前我们管理资源文件的方式是在 src/locales 文件夹下(当然，你放在哪里都可以)：
 ```
 .
 ├── en-US.js
@@ -130,7 +138,7 @@ export default NotFound;
 └── zh-Hans-CN.messages.js
 ```
 
-\*.messages.js 是我们的资源文件，返回的是一个对象，key 为我们翻译用的 id，value 为具体语言的翻译，内容是：
+\*.messages.js 是我们的资源文件(这里我们采用了 js 格式，你也可以使用 json 等等)，返回的是一个对象，key 为我们翻译用的 id，value 为具体语言的翻译，内容是：
 ```javascript
 module.exports = {
   "sendVerifyCode": "Resend verify code after {count} seconds",
@@ -175,21 +183,44 @@ window.appLocale = {
 };
 ```
 
-## 国际化资源文件自动化生成
+有了这些资源文件以及相关的封装之后，我们就可以在 `InltProvider` 中使用了。
 
-正常的开发流程是这样的，比如：
+### 国际化资源文件自动化生成
 
-1. 我们在页面中使用了 <FormattedMessage id="sayHello" defaultMessage="你好" />
-2. 然后在 zh-Hans-CN.messages.js 中增加这个 id，value 为 "你好"
-3. 然后在 en-US.messages.js 中增加这个 id，value 为 "hello"
-4. 如果这段代码不需要了，那你需要去 \*.messages.js 文件中删除相关 id
+上面提到了 \*.messages.js，我们手动维护它们其实是比较麻烦的，对此，我们提供了一种自动化生成 messages 的方式，具体过程是这样的：
 
-对此，我们提供了一种自动化生成 messages 的方式，具体过程是这样的：
-
-1. 约定 defaultMessage 必填，其内容就是中文翻译，这样对开发者来说了整个开发过程跟普通写代码并没有太多区别，只是需要使用特定组件来显示文案
+1. 约定 defaultMessage 必填，约定其内容就是中文翻译，这样对开发者来说了整个开发过程跟普通写代码并没有太多区别，只是需要使用特定组件来显示文案
 2. 页面开发完毕后，执行 `npm run build:i18n-js`，这个时候我们的脚本会做几件事件:
     * 自动生成 zh-Hans-CN.messages.js，将所有的 defaultMessage 作为中文翻译 value
     * 自动生成 en-US.messages.js，默认 value 为空值，如果 value 你修改过，那 merge 的时候会保留用户修改的值
 3. 如果你删除了部分国际化代码，执行脚本后，相关的 key-value 会从所有的 messages.js 中删除
 
-# 项目之间、开发者与翻译者之间的协作
+### 资源文件的加载
+
+大家可以看到我们根目录下有两个 html 文件：
+* index.html
+* index-en.html
+
+这么做的主要目的是分开加载资源文件，index.html 加载中文资源文件，index-en.html 加载英文资源文件  
+这样做的好处不会加载多余的资源文件，性能上也不错，当然麻烦之处在于需要服务端判断显示中文还是英文页面  
+除此之外，也可以通过 ajax 请求获取资源文件，动态给 `IntlProvider` 传相应的 local data
+
+## 项目之间、开发者与翻译者之间的协作
+
+聊完了具体的国际化，我们来聊一聊国际化相关的协作，这里我就不提供具体的方案了，来说下思路吧。  
+
+> Todo
+
+## AntD 国际化规范附录
+
+### React Intl 编写规范
+1. 必须填写 defaultMessage，并将 defaultMessage 作为中文翻译
+2. id 不得重复
+3. 在使用 intl.formatMessage() 时，必须使用 defineMessages，预定义消息
+
+> Todo
+
+## 扩展阅读
+
+* [react-intl](https://github.com/yahoo/react-intl)
+* [react-intl-corner-cases](docs/react-intl-corner-cases.md)
