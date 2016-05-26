@@ -9,5 +9,12 @@ module.exports = function (webpackConfig) {
     return loader;
   });
 
+  webpackConfig.babel.plugins.push([
+    'react-intl', {
+      'messagesDir': './i18n-messages',
+    },
+  ]);
+  webpackConfig.babel.cacheDirectory = false;
+
   return webpackConfig;
 };
