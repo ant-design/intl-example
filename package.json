@@ -40,7 +40,7 @@
   ],
   "scripts": {
     "start": "npm run dev",
-    "dev": "dora -p 8001 --plugins webpack,proxy",
+    "dev": "dora -p 8001 --plugins webpack,proxy,hmr,livereload",
     "lint": "eslint --ext .js,.jsx src",
     "build": "atool-build -o ./dist/${npm_package_name}/${npm_package_version}/",
     "build:i18n-js": "babel-node --presets es2015 scripts/translate.js"
