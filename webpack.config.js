@@ -11,7 +11,7 @@ module.exports = function (webpackConfig) {
 
   webpackConfig.babel.plugins.push([
     'react-intl', {
-      'messagesDir': './i18n-messages',
+      messagesDir: './i18n-messages',
     },
   ]);
   webpackConfig.babel.cacheDirectory = false;
