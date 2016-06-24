@@ -31,7 +31,6 @@
     "eslint-config-airbnb": "6.x",
     "eslint-plugin-react": "4.x",
     "glob": "~7.0.3",
-    "intl-translate": "^2.1.0",
     "mkdirp": "~0.5.1",
     "pre-commit": "1.x",
     "rimraf": "^2.5.0"
@@ -44,7 +43,7 @@
     "dev": "dora -p 8001 --plugins webpack,proxy,hmr,livereload",
     "lint": "eslint --ext .js,.jsx src",
     "build": "atool-build -o ./dist/${npm_package_name}/${npm_package_version}/",
-    "trans": "intl-translate",
-    "trans-debug": "intl-translate-debug"
+    "trans": "atool-i18n",
+    "trans-debug": "atool-i18n-debug"
   }
 }
