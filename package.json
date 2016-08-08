@@ -16,6 +16,7 @@
     "react-intl": "^2.0.0"
   },
   "devDependencies": {
+    "atool-l10n": "^0.1.0",
     "babel-cli": "^6.4.0",
     "babel-eslint": "^6.0.0",
     "babel-plugin-react-intl": "^2.0.0",
@@ -43,7 +44,6 @@
     "dev": "dora -p 8001 --plugins webpack,proxy,hmr,livereload",
     "lint": "eslint --ext .js,.jsx src",
     "build": "atool-build -o ./dist/${npm_package_name}/${npm_package_version}/",
-    "trans": "atool-i18n",
-    "trans-debug": "atool-i18n-debug"
+    "trans": "atool-l10n"
   }
 }

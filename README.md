@@ -14,9 +14,9 @@ https://github.com/airbnb/javascript
 
 
 ```
-npm install
-npm run dev
-npm run trans
+$ npm install
+$ npm run dev
+$ npm run trans
 ```
 
 - Chinese: http://127.0.0.1:8989
