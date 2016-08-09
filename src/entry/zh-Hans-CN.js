@@ -1,5 +1,5 @@
 import appLocaleData from 'react-intl/locale-data/zh';
-import zhMessages from '../../locale/zh.js';
+import zhMessages from '../../locales/zh.json';
 
 window.appLocale = {
   messages: {
