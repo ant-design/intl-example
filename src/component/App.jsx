@@ -1,6 +1,15 @@
 import React from 'react';
-import { DatePicker } from 'antd';
-import { FormattedMessage } from 'react-intl';
+import { DatePicker, Pagination } from 'antd';
+import { FormattedMessage, defineMessages } from 'react-intl';
+import InjectExample from './InjectExample';
+
+
+const messages = defineMessages({
+  datePicker: {
+    id: 'App.datePicker.title',
+    defaultMessage: '日期选择',
+  },
+});
 
 class App extends React.Component {
   render() {
@@ -9,9 +18,15 @@ class App extends React.Component {
         <p><a href="index.html">中文</a></p>
         <p><a href="index-en.html">english</a></p>
       </div>
-      <div>
-        <FormattedMessage id="app.date-picker.title" defaultMessage="日期选择" />: &nbsp;
+      <div style={{ margin: 10 }}>
+        <FormattedMessage {...messages.datePicker} />: &nbsp;
         <DatePicker />
+      </div>
+      <div style={{ margin: 10 }}>
+        <Pagination showQuickJumper defaultCurrent={2} total={500} />
+      </div>
+      <div style={{ margin: 10 }}>
+        <InjectExample />
       </div>
     </div>);
   }
