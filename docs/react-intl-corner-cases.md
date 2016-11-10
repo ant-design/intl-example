@@ -28,5 +28,5 @@
     ...
   ```
 * react-intl usage inside actions or maybe redux-sagas(somewhere you can't directly access the react-intl's apis)
-* react-intl usage with antd form validation
+* react-intl usage with `antd`/`rc-form` form validation
 * react-intl usage with `Enums`

@@ -1,13 +1,13 @@
-# AntD 国际化方案
+# antd/antd-mobile 国际化方案
 
-* AntD 国际化方案概述
+* 国际化方案概述
 * 前端国际化详解、举例
 * 国际化资源文件管理
 * 项目之间、开发者与翻译者之间的协作
-* AntD 国际化规范附录
+* 国际化规范附录
 * 扩展阅读
 
-## AntD 国际化方案概述
+## 国际化方案概述
 
 国际化是一个看似简单，实则非常复杂的领域，实际进行国际化工作时，大家会发现它往往会涉及很多内容：
 * 前端国际化
@@ -16,7 +16,7 @@
 * 项目之间、开发者与翻译者之间如何协作
 
 而且，国际化方案往往与具体的技术栈是绑定的。
-AntD 提供的国际化方案仅针对 React 技术栈，且不会涉及服务端国际化内容。
+本国际化方案仅针对 React 技术栈，且不会涉及服务端国际化内容。
 
 ## 前端国际化详解、举例
 
@@ -25,7 +25,7 @@ AntD 提供的国际化方案仅针对 React 技术栈，且不会涉及服务�
 1. 创建资源文件，以 key-value 方式存储
 2. 加载资源文件，将页面上 key 的内容替换为相关 value
 
-在这里我们重点看下如何将页面上的 "key" 替换为相关 "value"。  
+在这里我们重点看下如何将页面上的 "key" 替换为相关 "value"。
 首先，我需要跟大家介绍一个类库 [React Intl](https://github.com/yahoo/react-intl)，我们的国际化方案主要是基于它展开的。
 React Intl 是由 yahoo 开发的，针对 React 的国际化类库，基于 Format.js，支持语言、时间、货币等等国际化。
 
@@ -62,7 +62,7 @@ import en from 'react-intl/locale-data/en';
 addLocaleData(en);
 ```
 
-react-intl 在做国际化的时候需要一些特有的 local data，主要是进行相对时间翻译时，比如昨天、今天、明天、几分钟前、几个月前之类的。  
+react-intl 在做国际化的时候需要一些特有的 local data，主要是进行相对时间翻译时，比如昨天、今天、明天、几分钟前、几个月前之类的。
 我们通过 `addLocaleData` 这个方法加载相关内容，大家可以根据实际情况加载需要的 locale-data。
 
 #### 创建 react-intl 国际化上下文组件
@@ -84,7 +84,7 @@ ReactDOM.render(
 );
 ```
 
-通常一个单页项目只有一个 IntlProvider，当然，IntlProvider 是支持嵌套的。  
+通常一个单页项目只有一个 IntlProvider，当然，IntlProvider 是支持嵌套的。
 IntlProvider 有三个入参：
   * locale, <string>, 例如 'zh-CN' 'en-US'
   * messages, <object>, 翻译所需的 key-value 对象
@@ -201,17 +201,17 @@ window.appLocale = {
 * index.html
 * index-en.html
 
-这么做的主要目的是分开加载资源文件，index.html 加载中文资源文件，index-en.html 加载英文资源文件  
-这样做的好处不会加载多余的资源文件，性能上也不错，当然麻烦之处在于需要服务端判断显示中文还是英文页面  
+这么做的主要目的是分开加载资源文件，index.html 加载中文资源文件，index-en.html 加载英文资源文件
+这样做的好处不会加载多余的资源文件，性能上也不错，当然麻烦之处在于需要服务端判断显示中文还是英文页面
 除此之外，也可以通过 ajax 请求获取资源文件，动态给 `IntlProvider` 传相应的 local data
 
 ## 项目之间、开发者与翻译者之间的协作
 
-聊完了具体的国际化，我们来聊一聊国际化相关的协作，这里我就不提供具体的方案了，来说下思路吧。  
+聊完了具体的国际化，我们来聊一聊国际化相关的协作，这里我就不提供具体的方案了，来说下思路吧。
 
 > Todo
 
-## AntD 国际化规范附录
+## 国际化规范附录
 
 ### React Intl 编写规范
 1. 必须填写 defaultMessage，并将 defaultMessage 作为中文翻译
