@@ -1,10 +1,6 @@
 # intl-examples
 
-## Environment
-
-```
-node >= 0.12
-```
+![](https://zos.alipayobjects.com/rmsportal/JoGKhgfuFXaJNzK.gif)
 
 ## Code Style
 
