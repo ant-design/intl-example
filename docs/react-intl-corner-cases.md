@@ -2,7 +2,7 @@
 
 > Examples about how to handle corner cases especially when you're using libraries like redux and so on.
 
-* use defineMessages with intl.formateMessage()
+* use defineMessages with intl.formatMessage()
   ```javascript
   const messages = defineMessages({
     placeholder: {
