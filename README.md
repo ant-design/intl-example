@@ -1,5 +1,7 @@
 # intl-examples
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/ant-design/intl-example.svg)](https://greenkeeper.io/)
+
 ![](https://zos.alipayobjects.com/rmsportal/JoGKhgfuFXaJNzK.gif)
 
 ## Code Style
