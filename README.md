@@ -21,5 +21,5 @@ $ npm run trans
 ## Getting Start
 
 * [Getting Start](docs/getting-start.md)
-* [Understanding AntD i18n](docs/understanding-antd-i18n.md)
+* [Understanding antd i18n](docs/understanding-antd-i18n.md)
 * [React Intl Examples](docs/react-intl-corner-cases.md)
